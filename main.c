@@ -293,7 +293,9 @@ void update() {
 					START = 0;
 					HM10_SendCommand("TESTING\r\n");
 					strcpy(mode, "TEST\0");
+					HM10_ClearBuffer();
 					motor_command(last_behaviour);
+					
 				}else if(strcmp(HM10Buffer, "STATUS\r\n") == 0){
 						
 					HM10NewDataAvailable = 0;
@@ -321,6 +323,7 @@ void update() {
 				}else if(!START && strcmp(HM10Buffer, "START\r\n") == 0){
 				  START = 1;
 					HM10_SendCommand("START\r\n");
+					HM10_ClearBuffer();
 				}else{
 					HM10_ClearBuffer();
 				}
